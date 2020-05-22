@@ -10,6 +10,7 @@ class JsonadmControllerTest extends AimeosTestAbstract
 		$response = $this->action( 'OPTIONS', '\Aimeos\Shop\Controller\JsonadmController@optionsAction', $params );
 
 		$json = json_decode( $response->getContent(), true );
+print_r( $json );
 
 		$this->assertResponseOk();
 		$this->assertNotNull( $json );
