@@ -120,8 +120,13 @@ class JsonadmController extends Controller
 		if( config( 'shop.authorize', true ) ) {
 			$this->authorize( 'admin', [JsonadmController::class, ['admin', 'api', 'editor']] );
 		}
-
-		return $this->createAdmin()->options( $request, ( new Psr17Factory )->createResponse() );
+		try {
+			return $this->createAdmin()->options( $request, ( new Psr17Factory )->createResponse() );
+		} catch( \Throwable $t ) {
+			echo $t->getMessage();
+			echo $t->getTraceAsString();
+			throw $t;
+		}
 	}
 
 
