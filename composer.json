@@ -16,6 +16,13 @@
     "conflict": {
         "symfony/http-foundation": "v5.2.0"
     },
+    "scripts": {
+        "post-update-cmd": [
+            "@php artisan migrate",
+            "@php artisan vendor:publish --tag=public --force",
+            "\\Aimeos\\Shop\\Composer::join"
+        ]
+    },
     "require": {
         "doctrine/dbal": "~2.5",
         "laravel/framework": "^6.20.12||^7.30.4||^8.24.0",
